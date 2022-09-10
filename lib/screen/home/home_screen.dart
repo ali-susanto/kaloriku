@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../components/bottom_navbar.dart';
+import '../components/scan_fab.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -19,9 +22,11 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Container(
                   width: size.width,
-                  color: Colors.blueAccent,
                   padding:
                       const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                  decoration: BoxDecoration(
+                      color: Colors.blueAccent,
+                      borderRadius: BorderRadius.circular(12)),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,44 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          elevation: 0,
-          child: const Icon(Icons.camera),
-        ),
-        bottomNavigationBar: BottomAppBar(
-          shape: const CircularNotchedRectangle(),
-          notchMargin: 6,
-          color: Colors.blue,
-          child: Container(
-            height: 50,
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-            decoration: BoxDecoration(
-              //color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                    offset: const Offset(0, -4),
-                    blurRadius: 20,
-                    color: Colors.grey.withOpacity(0.5))
-              ],
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: SafeArea(
-                top: false,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.home),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.home),
-                    ),
-                  ],
-                )),
-          ),
-        ));
+        floatingActionButton: const ScanButton(),
+        bottomNavigationBar: const BottomNavbar());
   }
 }
