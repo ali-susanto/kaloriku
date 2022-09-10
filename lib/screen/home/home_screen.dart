@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../components/bottom_navbar.dart';
-import '../components/scan_fab.dart';
+import '../../components/bottom_navbar.dart';
+import '../../components/scan_fab.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
