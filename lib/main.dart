@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:kaloriku/screen/calculator/calculator_screen.dart';
 import 'package:kaloriku/screen/detection/detection_screen.dart';
 import 'package:kaloriku/screen/home/home_screen.dart';
 import 'package:kaloriku/screen/profile/profile_screen.dart';
+import 'package:kaloriku/screen/tips/tips_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,8 +23,10 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/home': (context) => const HomeScreen(),
+        '/calculator': (context) => const CalculatorScreen(),
+        '/scan': (context) => const DetectionScreen(),
+        '/tips': (context) => const TipsScreen(),
         '/profile': (context) => const ProfileScreen(),
-        '/scan': (context) => const DetectionScreen()
       },
       initialRoute: '/home',
     );

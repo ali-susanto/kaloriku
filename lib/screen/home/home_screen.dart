@@ -11,6 +11,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final _page = ['/home', '/calculator', '/scan', '/tips', '/profile'];
+  int _selectedPage = 0;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -49,8 +51,15 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: const ScanButton(),
-        bottomNavigationBar: const BottomNavbar());
+        // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        // floatingActionButton: const ScanButton(),
+        bottomNavigationBar: BottomNavbar(
+          index: 0,
+          onTap: (int index) {
+            setState(() {
+              _selectedPage = index;
+            });
+          },
+        ));
   }
 }

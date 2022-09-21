@@ -11,9 +11,9 @@ class DetectionScreen extends StatefulWidget {
 class _DetectionScreenState extends State<DetectionScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Text('data'),
-      bottomNavigationBar: BottomNavbar(),
+    return Scaffold(
+      body: const Text('data'),
+      bottomNavigationBar: BottomNavbar(index: 2, onTap: () {}),
     );
   }
 }
