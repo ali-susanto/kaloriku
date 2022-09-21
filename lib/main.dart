@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         '/tips': (context) => const TipsScreen(),
         '/profile': (context) => const ProfileScreen(),
       },
-      initialRoute: '/home',
+      initialRoute: '/calculator',
     );
   }
 }
