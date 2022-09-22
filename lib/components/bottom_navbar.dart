@@ -1,5 +1,6 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:kaloriku/constants.dart';
 
 class BottomNavbar extends StatelessWidget {
   BottomNavbar({Key? key, required this.index, required this.onTap})
@@ -11,6 +12,7 @@ class BottomNavbar extends StatelessWidget {
   Widget build(BuildContext context) {
     final page = ['/home', '/scan', '/profile'];
     return ConvexAppBar(
+      backgroundColor: kSecondaryBlue,
       style: TabStyle.fixedCircle,
       initialActiveIndex: index,
       items: const [
