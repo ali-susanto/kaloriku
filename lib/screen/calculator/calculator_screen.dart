@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kaloriku/components/bottom_navbar.dart';
@@ -14,7 +16,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   var _selectedPage = ['/scan', '/calculator'];
   bool isMale = true;
   double height = 180;
-  int weight = 80;
+  int weight = 60;
   int age = 20;
 
   @override
@@ -48,10 +50,13 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                         height: size.width * 0.45,
                         width: size.width * 0.42,
                         decoration: BoxDecoration(
-                            color: isMale
-                                ? kSecondaryBlue
-                                : kGreyColor.withOpacity(0.3),
-                            borderRadius: BorderRadius.circular(9)),
+                            color: kWhiteColor,
+                            border: Border.all(
+                                width: isMale ? 3 : 2,
+                                color: isMale
+                                    ? const Color(0xFF0c0f21)
+                                    : const Color(0xFF969bb2)),
+                            borderRadius: BorderRadius.circular(12)),
                         child: Padding(
                           padding: const EdgeInsets.all(13.0),
                           child: Column(
@@ -60,6 +65,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                               Icon(
                                 Icons.male,
                                 size: 110,
+                                color: Color(0xFFeb9161),
                               ),
                               Spacer(),
                               Text(
@@ -82,10 +88,13 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                         height: size.width * 0.45,
                         width: size.width * 0.42,
                         decoration: BoxDecoration(
-                            color: isMale
-                                ? kGreyColor.withOpacity(0.3)
-                                : kSecondaryBlue,
-                            borderRadius: BorderRadius.circular(9)),
+                            color: kWhiteColor,
+                            border: Border.all(
+                                width: isMale ? 2 : 3,
+                                color: isMale
+                                    ? const Color(0xFF969bb2)
+                                    : const Color(0xFF0c0f21)),
+                            borderRadius: BorderRadius.circular(12)),
                         child: Padding(
                           padding: const EdgeInsets.all(13.0),
                           child: Column(
@@ -94,6 +103,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                               Icon(
                                 Icons.female,
                                 size: 110,
+                                color: Color(0xFFc5416f),
                               ),
                               Spacer(),
                               Text(
@@ -113,8 +123,9 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                   height: size.width * 0.5,
                   width: size.width,
                   decoration: BoxDecoration(
-                      color: kGreyColor,
-                      borderRadius: BorderRadius.circular(9)),
+                      color: kWhiteColor,
+                      border: Border.all(width: 2, color: Colors.grey),
+                      borderRadius: BorderRadius.circular(12)),
                   child: Padding(
                     padding: const EdgeInsets.all(13),
                     child: Column(
@@ -167,8 +178,9 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                       height: size.width * 0.45,
                       width: size.width * 0.42,
                       decoration: BoxDecoration(
-                          color: kGreyColor,
-                          borderRadius: BorderRadius.circular(9)),
+                          color: kWhiteColor,
+                          border: Border.all(width: 2, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(12)),
                       child: Padding(
                         padding: const EdgeInsets.all(13),
                         child: Column(
@@ -220,8 +232,9 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                       height: size.width * 0.45,
                       width: size.width * 0.42,
                       decoration: BoxDecoration(
-                          color: kGreyColor,
-                          borderRadius: BorderRadius.circular(9)),
+                          color: kWhiteColor,
+                          border: Border.all(width: 2, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(12)),
                       child: Padding(
                         padding: const EdgeInsets.all(13),
                         child: Column(
@@ -278,42 +291,49 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                     width: size.width,
                     child: ElevatedButton(
                         onPressed: () {
-                          showDialog(
+                          double result = weight / pow(height / 100, 2);
+                          showModalBottomSheet(
+                            backgroundColor: const Color(0xFF2566cf),
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(16),
+                                    topRight: Radius.circular(16))),
                             context: context,
-                            builder: (context) => AlertDialog(
-                              content: SizedBox(
-                                height: size.width * 0.5,
-                                width: size.width * 0.8,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(13),
-                                  child: Column(
-                                    children: [
-                                      Text(isMale ? 'Pria' : 'Wanita'),
-                                      Text('${height.round()} cm'),
-                                      Text(weight.toString()),
-                                      Text(age.toString()),
-                                    ],
-                                  ),
+                            builder: (context) => SizedBox(
+                              height: size.height * 0.45,
+                              child: Padding(
+                                padding: const EdgeInsets.all(16),
+                                child: Column(
+                                  children: [
+                                    const SizedBox(
+                                      height: 15,
+                                    ),
+                                    const Text('Index BMI Kamu',
+                                        style: TextStyle(color: Colors.white)),
+                                    const SizedBox(
+                                      height: 15,
+                                    ),
+                                    Text(
+                                      "${result.round()}",
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    const SizedBox(
+                                      height: 15,
+                                    ),
+                                    const Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                        'Berat badan kamu bisa dikatakan ideal jika angka BMI kamu berada antara angka 18,5 sampai 22,9. Bagaimana cara menjaga agar berat badan tetap ideal? kamu perlu mengonsumsi makanan dan minuman sesuai dengan kebutuhan kalori harian kamu, untuk mempertahankan berat badan ideal seperti sekarang. Misalnya, jika kebutuhan kalori harian kamu adalah 1950 kkal, maka kamu harus mengonsumsi makanan dengan total kalori 1950 per harinya.',
+                                        style: TextStyle(color: Colors.white),
+                                        textAlign: TextAlign.justify,
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
-                              actions: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 10, horizontal: 13),
-                                  child: Center(
-                                    child: SizedBox(
-                                      width: size.width,
-                                      child: ElevatedButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                              primary: kPrimaryBlue),
-                                          child: const Text('Oke')),
-                                    ),
-                                  ),
-                                )
-                              ],
                             ),
                           );
                         },
