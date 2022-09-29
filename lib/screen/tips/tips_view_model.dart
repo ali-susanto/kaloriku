@@ -23,9 +23,15 @@ class TipsViewModel with ChangeNotifier {
       changeState(DataState.loading);
       List<TipsModel>? listData = await TipsApi().getTipsData();
 
-      _tipsData = listData;
-      notifyListeners();
-      changeState(DataState.succes);
+      if (listData.isNotEmpty) {
+        _tipsData = listData;
+        notifyListeners();
+        changeState(DataState.succes);
+      } else {
+        notifyListeners();
+        changeState(DataState.error);
+        errorMessage = 'Gagal mendapatkan data';
+      }
     } catch (e) {
       changeState(DataState.error);
       debugPrint(e.toString());
