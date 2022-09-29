@@ -1,10 +1,12 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:kaloriku/constants.dart';
 import 'package:kaloriku/enums.dart';
 import 'package:kaloriku/screen/tips/tips_view_model.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
+
+import '../../components/large_content_shimmer.dart';
+import '../../components/small_content_shimmer.dart';
 
 class TipsScreen extends StatefulWidget {
   const TipsScreen({Key? key}) : super(key: key);
@@ -41,21 +43,38 @@ class _TipsScreenState extends State<TipsScreen> {
             padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 13),
             child: Consumer<TipsViewModel>(builder: (context, state, child) {
               if (state.stateType == DataState.loading) {
-                return const Center(child: CircularProgressIndicator());
+                return Column(
+                  children: [
+                    LargeContentShimmer(size: size),
+                    const SizedBox(height: 32),
+                    Expanded(
+                        child: ListView.builder(
+                      itemCount: 4,
+                      itemBuilder: (context, index) {
+                        return SmallContentShimmer(size: size);
+                      },
+                    ))
+                  ],
+                );
               }
               if (state.stateType == DataState.error) {
                 return Center(
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       IconButton(
                           onPressed: () {
-                            Provider.of<TipsViewModel>(context).getData();
+                            Provider.of<TipsViewModel>(context, listen: false)
+                                .getData();
                           },
                           icon: const Icon(
                             Icons.error_outline_outlined,
                             size: 50,
                           )),
-                      const Text('Failed to get data'),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Text(viewModel.errorMessage),
                     ],
                   ),
                 );
