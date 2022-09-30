@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../components/bottom_navbar.dart';
 
 class DetectionScreen extends StatefulWidget {
   const DetectionScreen({Key? key}) : super(key: key);
@@ -13,7 +12,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: const Text('data'),
-      bottomNavigationBar: BottomNavbar(index: 2, onTap: () {}),
+      // bottomNavigationBar: BottomNavbar(index: 2, onTap: () {}),
     );
   }
 }

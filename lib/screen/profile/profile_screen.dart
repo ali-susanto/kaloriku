@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../components/bottom_navbar.dart';
-// import '../../components/scan_fab.dart';
-
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -14,10 +11,10 @@ class ProfileScreen extends StatelessWidget {
       ),
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       // floatingActionButton: const ScanButton(),
-      bottomNavigationBar: BottomNavbar(
-        index: 4,
-        onTap: () {},
-      ),
+      // bottomNavigationBar: BottomNavbar(
+      //   index: 4,
+      //   onTap: () {},
+      // ),
     );
   }
 }
