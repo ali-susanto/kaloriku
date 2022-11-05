@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:kaloriku/screen/calculator/calculator_screen.dart';
@@ -10,7 +11,11 @@ import 'package:provider/provider.dart';
 
 import 'constants.dart';
 
-void main() {
+late List<CameraDescription> camera;
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  camera = await availableCameras();
   runApp(
     MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => TipsViewModel())],
